@@ -1,7 +1,5 @@
 package todo;
 import done.*;
-import se.lth.cs.realtime.semaphore.Semaphore;
-import se.lth.cs.realtime.semaphore.MutexSem;
 
 public class ClockThread extends Thread {
 	private static ClockState cs;
@@ -21,7 +19,7 @@ public class ClockThread extends Thread {
 			if (dt > 0) {
 				try { Thread.sleep(dt); } catch (InterruptedException e) { }			
 			}
-			cs.increase();
+			cs.increaseClockTime();
 			int t = cs.getClockTime();
 			output.showTime(t);
 		}

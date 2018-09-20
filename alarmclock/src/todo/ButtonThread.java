@@ -17,15 +17,19 @@ public class ButtonThread extends Thread {
 	}
 	
 	public void run() {	
+		int choice = 0;
+		int lastChoice;
 		while (true) {
 			sem.take();
 			cs.silence();
-			int choice = input.getChoice();
-			if (choice == input.SET_ALARM) {
+			lastChoice = choice;
+			choice = input.getChoice();
+			if (choice == input.SHOW_TIME && lastChoice == input.SET_ALARM) {
 				cs.setAlarmTime(input.getValue());
-			} else if (choice == input.SET_TIME) {
+			} else if (choice == input.SHOW_TIME && lastChoice == input.SET_TIME) {
 				cs.setClockTime(input.getValue());
 			}
+			cs.toggleAlarm(input.getAlarmFlag());
 		}
 	}
 }

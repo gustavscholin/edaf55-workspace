@@ -38,9 +38,9 @@ public class ClockState {
 		sem.give();
 	}
 	
-	public void toggleAlarm() {
+	public void toggleAlarm(boolean state) {
 		sem.take();
-		alarmOn = !alarmOn;
+		alarmOn = state;
 		sem.give();
 	}
 	
@@ -48,7 +48,7 @@ public class ClockState {
 		return clockTime;
 	}
 	
-	public void increase() {
+	public void increaseClockTime() {
 		sem.take();
 		clockTime++;
 		if (clockTime % 100 == 60) {
