@@ -1,7 +1,6 @@
 package todo;
 import done.*;
 import se.lth.cs.realtime.semaphore.Semaphore;
-import se.lth.cs.realtime.semaphore.MutexSem;
 
 public class ButtonThread extends Thread {
 	private static ClockState cs;
@@ -29,7 +28,7 @@ public class ButtonThread extends Thread {
 			} else if (choice == input.SHOW_TIME && lastChoice == input.SET_TIME) {
 				cs.setClockTime(input.getValue());
 			}
-			cs.toggleAlarm(input.getAlarmFlag());
+			cs.setAlarm(input.getAlarmFlag());
 		}
 	}
 }

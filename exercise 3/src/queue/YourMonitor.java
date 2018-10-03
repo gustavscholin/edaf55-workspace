@@ -1,12 +1,22 @@
 package queue;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 class YourMonitor {
 	private int nCounters;
 	// Put your attributes here...
+	private int lastArrived;
+	private int lastServed;
+	private Queue<Integer> freeClerks;
 
 	YourMonitor(int n) { 
 		nCounters = n;
 		// Initialize your attributes here...
+		freeClerks = new LinkedList<Integer>();
+		for (int i = 0; i < n; i++) {
+			freeClerks.offer(i);
+		}
 	}
 
 	/**
@@ -15,7 +25,9 @@ class YourMonitor {
 	 */
 	synchronized int customerArrived() { 
 		// Implement this method...
-		return 0;
+		lastArrived = (lastArrived + 1) % 100;
+		notifyAll();
+		return lastArrived;
 	}
 
 	/**
@@ -23,6 +35,10 @@ class YourMonitor {
 	 */
 	synchronized void clerkFree(int id) { 
 		// Implement this method...
+		if (!freeClerks.contains(id)) {
+			freeClerks.offer(id);
+			notifyAll();
+		}
 	}
 
 	/**
@@ -32,6 +48,12 @@ class YourMonitor {
 	 */
 	synchronized DispData getDisplayData() throws InterruptedException { 
 		// Implement this method...
-		return null;
+		while (lastArrived == lastServed || freeClerks.isEmpty()) {
+			wait();
+		}
+		lastServed = (lastServed + 1) % 100;
+		int clerk = freeClerks.poll();
+
+		return new DispData(lastServed, clerk);
 	}
 }

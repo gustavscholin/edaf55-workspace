@@ -27,6 +27,19 @@ class Buffer {
 
 	synchronized String getLine() {
 		// Write the code that implements this method ...
-		return null;
+		try {
+			while (available == 0) {
+				wait();
+			}
+			String result = buffData[nextToGet];
+			nextToGet = (nextToGet + 1) % size;
+			available--;
+			notifyAll();
+
+			return result;
+
+		} catch (InterruptedException e) {
+			throw new RTError(e);
+		}
 	}
 }
