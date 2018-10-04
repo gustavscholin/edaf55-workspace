@@ -2,11 +2,21 @@ package lift;
 
 public class LiftThread extends Thread {
 
+    private static LiftState ls;
+    private static LiftView lv;
+
+    public LiftThread(LiftState ls, LiftView lv) {
+        this.ls = ls;
+        this.lv = lv;
+    }
+
     public void run() {
+        int from = 0;
         while (true) {
-            s.awaitPersonsWalkingOnOrOff();
-            int to = s.getNextFloor();
-            view.moveLift(from, to);
+            ls.awaitPersonsWalkingOnOrOff();
+            int to = ls.getNextFloor();
+            lv.moveLift(from, to);
+            from = to;
         }
     }
 }
