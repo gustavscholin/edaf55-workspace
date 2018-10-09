@@ -10,7 +10,7 @@ public class PersonThread extends Thread {
     public void run() {
         while (true) {
             int start = 0;
-            int dest = (int)(Math.random()*7);
+            int dest = (int)(Math.random()*6 + 1);
             ls.travel(start, dest);
 
             int delay = 1000*((int)(Math.random()*46.0));
