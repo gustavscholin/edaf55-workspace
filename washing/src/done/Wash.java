@@ -20,7 +20,7 @@ public class Wash {
 
     // Change these if you wish
     private static double SIMULATION_SPEED = 50.0;
-    private static boolean SHOW_HACKER_PANEL = true;
+    private static boolean SHOW_HACKER_PANEL = false;
     
 	// ------------------------------------------------------------- MAIN METHOD
 

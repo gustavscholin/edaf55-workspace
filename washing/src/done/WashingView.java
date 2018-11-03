@@ -91,19 +91,19 @@ class WashingView extends Frame implements Runnable {
 
         // Load some cool images
         try {
-            myMachineImage = ImageIO.read(new File(IMAGE_PATH + "machine.png"));
-            myLockedImage = ImageIO.read(new File(IMAGE_PATH + "locked.png"));
-            myUnlockedImage = ImageIO.read(new File(IMAGE_PATH + "unlocked.png"));
-            myPipeInImage = ImageIO.read(new File(IMAGE_PATH + "pipein.png"));
-            myPipeInActiveImage = ImageIO.read(new File(IMAGE_PATH + "pipeinactive.png"));
-            myPipeOutImage = ImageIO.read(new File(IMAGE_PATH + "pipeout.png"));
-            myPipeOutActiveImage = ImageIO.read(new File(IMAGE_PATH + "pipeoutactive.png"));
-            myFireImage = ImageIO.read(new File(IMAGE_PATH + "fire.png"));
-            myFishImage = ImageIO.read(new File(IMAGE_PATH + "fish.png"));
+            myMachineImage = ImageIO.read(getClass().getResource(IMAGE_PATH + "machine.png"));
+            myLockedImage = ImageIO.read(getClass().getResource(IMAGE_PATH + "locked.png"));
+            myUnlockedImage = ImageIO.read(getClass().getResource(IMAGE_PATH + "unlocked.png"));
+            myPipeInImage = ImageIO.read(getClass().getResource(IMAGE_PATH + "pipein.png"));
+            myPipeInActiveImage = ImageIO.read(getClass().getResource(IMAGE_PATH + "pipeinactive.png"));
+            myPipeOutImage = ImageIO.read(getClass().getResource(IMAGE_PATH + "pipeout.png"));
+            myPipeOutActiveImage = ImageIO.read(getClass().getResource(IMAGE_PATH + "pipeoutactive.png"));
+            myFireImage = ImageIO.read(getClass().getResource(IMAGE_PATH + "fire.png"));
+            myFishImage = ImageIO.read(getClass().getResource(IMAGE_PATH + "fish.png"));
 
             myTumblerImages = new Image[SPIN_CYCLE];
             for (int i = 0; i < SPIN_CYCLE; i++) {
-                myTumblerImages[i] = ImageIO.read(new File(IMAGE_PATH + "tumbler" + i + ".png"));
+                myTumblerImages[i] = ImageIO.read(getClass().getResource(IMAGE_PATH + "tumbler" + i + ".png"));
             }
         } catch (IOException ioe) {
             throw new Error(ioe);
@@ -496,7 +496,7 @@ class WashingView extends Frame implements Runnable {
     private static final int SPIN_CYCLE = 8;
 
     // Path for PNG files
-    private static final String IMAGE_PATH = "images/";
+    private static final String IMAGE_PATH = "/resources/images/";
 
     // Window dimensions
     private static final int WINDOW_W = 600;
